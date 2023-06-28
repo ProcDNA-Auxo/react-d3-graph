@@ -244,8 +244,8 @@ export default class Graph extends React.Component {
       draggedNode.oldX = draggedNode.x;
       draggedNode.oldY = draggedNode.y;
 
-      const newX = draggedNode.x + d3Event.dx;
-      const newY = draggedNode.y + d3Event.dy;
+      const newX = draggedNode.x + ev.dx;
+      const newY = draggedNode.y + ev.dy;
       const shouldUpdateNode = !this.state.config.bounded || isPositionInBounds({ x: newX, y: newY }, this.state);
 
       if (shouldUpdateNode) {
@@ -322,8 +322,8 @@ export default class Graph extends React.Component {
    * Handler for 'zoom' event within zoom config.
    * @returns {Object} returns the transformed elements within the svg graph area.
    */
-  _zoomed = () => {
-    const transform = d3Event.transform;
+  _zoomed = (ev) => {
+    const transform = ev.transform;
 
     d3SelectAll(`#${this.state.id}-${CONST.GRAPH_CONTAINER_ID}`).attr("transform", transform);
 

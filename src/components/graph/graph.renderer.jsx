@@ -77,7 +77,8 @@ function _renderNodes(nodes, nodeCallbacks, config, highlightedNode, highlighted
     outNodes = outNodes.filter(nodeId => isNodeVisible(nodeId, nodes, linksMatrix));
   }
 
-  return outNodes.map(nodeId => {
+  return outNodes.map((nodeId, index) => {
+    const key = `${nodeId}.${index}`;
     const props = buildNodeProps(
       { ...nodes[nodeId], id: `${nodeId}` },
       config,
@@ -87,7 +88,7 @@ function _renderNodes(nodes, nodeCallbacks, config, highlightedNode, highlighted
       transform
     );
 
-    return <Node key={nodeId} {...props} />;
+    return <Node key={key} {...props} />;
   });
 }
 
